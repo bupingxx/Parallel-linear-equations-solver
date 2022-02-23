@@ -16,11 +16,11 @@ ___
 
 ​	对于线性方程组：
 
-![img](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-1.png)
+![img](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-1.png)
 
 ​	可以表示成`Ax=b`的形式：
 
-![img](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-2.png)
+![img](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-2.png)
 
 ​	第一步是进行上三角化，在每列中找到系数最大的那行，记录该行下标`max_index`，并标记该行为选中状态`calculated`，然后在其他行中进行削减，使得除最大行以外的所有行该列元素均为0。
 
@@ -179,7 +179,7 @@ ___
 
 ​	可以看到，OpenMP的结果正是我们想看到的！由于省去了通信的开销，OpenMP版本获得了良好的加速比。4线程没有达到接近4的加速比可能是因为n还是太小了，由于我们使用了动态调度，可以推测程序在n很大时可以更接近线性加速比，分别用单线程和四线程测试n = 8192，结果如下：
 
-![image-20220122025223080](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-3.png)
+![image-20220122025223080](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-3.png)
 
 ​	此时加速比为2.65，由于更高阶的计算耗时实在是太久了，这里便不再测试。可以看出使用OpenMP并行高斯消元法是个不错的选择。
 
@@ -189,15 +189,15 @@ ___
 
 ​	三个版本的并行化中，OpenMP由于没有通信的开销，获得了最好的性能，在Linux系统上，不同线程的运行时间如下：
 
-![image-20220122152355035](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-4.png)
+![image-20220122152355035](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-4.png)
 
 ​	在Windows系统上进行一次相同的测试，不同线程的运行时间如下：
 
-![image-20220122152448245](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-5.png)
+![image-20220122152448245](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-5.png)
 
 ​	两个系统对比如下：
 
-![image-20220122152517497](C:\Users\82458\Desktop\github\Parallel-linear-equations-solver\img\image-6.png)
+![image-20220122152517497](https://github.com/bupingxx/Parallel-linear-equations-solver/blob/main/img/image-6.png)
 
 ​	可以看出，在相同线程时，Linux的运行时间更少，如果不考虑测试时的误差，可以看出Linux要比Windows更加稳定和快速一些，很大一部分原因是二者的系统内核不一样，导致了Linux对CPU的使用比windows更加优秀。
 
